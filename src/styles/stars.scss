@@ -1,0 +1,58 @@
+@use "sass:math";
+// from https://codepen.io/sarazond/pen/LYGbwj
+$container-size: 2000px;
+
+@function multiple-box-shadow($n) {
+  $value: '#{math.random(math.div($container-size, 1px)) * 1px} #{math.random(math.div($container-size, 1px)) * 1px} #FFF';
+  @for $i from 2 through $n {
+    $value: '#{$value} , #{math.random(math.div($container-size, 1px)) * 1px} #{math.random(math.div($container-size, 1px)) * 1px} #FFF';
+  }
+  @return unquote($value);
+}
+
+$shadows-small: multiple-box-shadow(300);
+$shadows-medium: multiple-box-shadow(100);
+$shadows-big: multiple-box-shadow(50);
+
+@mixin star($size, $shadows, $animation-duration) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $size;
+  height: $size;
+  background: transparent;
+  box-shadow: $shadows;
+  animation: animStar $animation-duration linear infinite;
+
+  &:after {
+    content: " ";
+    position: absolute;
+    top: $container-size;
+    left: 0;
+    width: $size;
+    height: $size;
+    background: transparent;
+    box-shadow: $shadows;
+  }
+}
+
+#stars {
+  @include star(1px, $shadows-small, 50s);
+}
+
+#stars2 {
+  @include star(2px, $shadows-medium, 100s);
+}
+
+#stars3 {
+  @include star(3px, $shadows-big, 150s);
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-$container-size);
+  }
+}
