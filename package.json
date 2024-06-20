@@ -9,7 +9,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "lint": "next lint",
     "start": "next start"
   },
@@ -24,6 +24,7 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "sass": "^1.77.6",
+    "stripe": "^15.12.0",
     "zod": "^3.23.3"
   },
   "devDependencies": {
