@@ -13,4 +13,5 @@ body {
   padding: 0;
   height: 100dvh;
   overflow: auto;
+  @apply text-white;
 }
