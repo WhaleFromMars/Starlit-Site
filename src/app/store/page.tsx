@@ -34,16 +34,16 @@ export default async function StorePage() {
     <main className="p-4">
       {Array.from(productsByCategory.entries()).map(([category, products]) => (
         <div key={category} className="mb-8 text-white">
-          <h1 className="text-3xl text-center font-bold mb-4">{category}</h1>
+          <h1 className="mb-4 text-center text-3xl font-bold">{category}</h1>
           {chunkArray(products, 3).map((productRow, rowIndex) => (
             <div
               key={rowIndex}
-              className="flex flex-wrap justify-center space-x-4 mb-4"
+              className="spacle-x-4 mb-4 flex flex-wrap justify-center"
             >
               {productRow.map((product) => (
                 <div
                   key={product.id}
-                  className="flex-1 max-w-xs text-center sm:max-w-none sm:flex-none"
+                  className="max-w-xs flex-1 text-center sm:max-w-none sm:flex-none"
                 >
                   <p>{product.name}</p>
                 </div>
