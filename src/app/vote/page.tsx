@@ -1,15 +1,10 @@
-import { headers } from "next/headers";
-import { db } from "~/server/db";
+import { getTop5Votes, getUserVotes } from "~/server/db/queries";
 
 export const dynamic = "force-dynamic";
 
-export default function VotePage() {
+export default async function VotePage() {
   
-  const votes = db.query.votes.findMany(
-    {
-      orderBy: (model, {desc}) => desc(model.votesThisMonth),
-    }
-  );
+  const votes = await getTop5Votes();
 
   return (
     <main className="">

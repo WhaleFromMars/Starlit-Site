@@ -59,7 +59,7 @@ export function SignInButton() {
 
   return (
     <Dialog>
-      <DialogTrigger>Sign In</DialogTrigger>
+      <DialogTrigger className="px-4">Sign In</DialogTrigger>
       <DialogContent className="bg-gray-800 sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Sign In</DialogTitle>
