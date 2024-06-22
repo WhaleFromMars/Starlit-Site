@@ -14,11 +14,11 @@ export const metadata = {
 function TopNav() {
   return (
     <nav className="flex justify-between text-center items-center grid-cols-5 p-4 font-semibold">
-      <Link href="/">News</Link>
-      <Link href="/about">Store</Link>
-      <Link href="/contact" className="text-5xl">StarlitMC</Link>
-      <Link href="/blog">Vote</Link>
-      <Link href="/projects">Sign In</Link>
+      <Link href="/news">News</Link>
+      <Link href="/store">Store</Link>
+      <Link href="/" className="text-5xl">StarlitMC</Link>
+      <Link href="/vote">Vote</Link>
+      <Link href="/">Sign In</Link>
     </nav>
   );
 }
