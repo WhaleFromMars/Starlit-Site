@@ -38,7 +38,7 @@ export default async function StorePage() {
           {chunkArray(products, 3).map((productRow, rowIndex) => (
             <div
               key={rowIndex}
-              className="spacle-x-4 mb-4 flex flex-wrap justify-center"
+              className="gap-4 mb-4 flex flex-wrap justify-center"
             >
               {productRow.map((product) => (
                 <div
