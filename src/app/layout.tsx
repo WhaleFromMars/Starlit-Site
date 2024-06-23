@@ -4,6 +4,7 @@ import "~/styles/stars.scss";
 import { GeistSans } from "geist/font/sans";
 import { TopNav } from "./_components/topnav";
 import { Toaster } from "~/components/ui/toaster";
+import CookieBanner from "./_components/cookiebanner";
 
 export const metadata = {
   title: "StarlitMC",
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <TopNav />
         {children}
+        <CookieBanner />
         <div id="stars"></div>
         <div id="stars2"></div>
         <div id="stars3"></div>
