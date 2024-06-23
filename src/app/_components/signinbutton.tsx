@@ -28,12 +28,12 @@ const SignInSchema = z.object({
     .string()
     .refine(
       (val) =>
-        (val.length >= 4 && val.length <= 16) ||
+        /^[a-zA-Z0-9_]{3,16}$/.test(val) ||
         val.length === 32 ||
         val.length === 36,
       {
         message:
-          "Must be a username (4-16 characters) or UUID (32 or 36 characters).",
+          "Must be a username (3-16 characters, only letters, numbers, and underscores) or UUID (32 or 36 characters).",
       },
     ),
 });
