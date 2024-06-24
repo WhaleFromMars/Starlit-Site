@@ -39,7 +39,7 @@ const fetchUUID = async (username: string): Promise<string> => {
       (await response.json()) as MojangApiResponse;
     return data.id;
   } else if (response.status === 204) {
-    throw new Error("Username does not exist in Mojang database.");
+    throw new Error("Invalid Username");
   } else {
     const errorData = (await response.json()) as MojangApiErrorResponse;
     throw new Error(errorData.errorMessage);
@@ -69,7 +69,7 @@ const SignInSchema = z.object({
         (val.length === 36 && val.split("-").length === 5),
       {
         message:
-          "Must be a username (3-16 characters) or UUID (32 or 36 characters).",
+          "Must be a username (3-16 characters) or UUID (32/36 characters).",
       },
     )
     .superRefine(async (val, ctx) => {
@@ -104,7 +104,7 @@ const SignInSchema = z.object({
           if (!userExists) {
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
-              message: "UUID does not exist in the database.",
+              message: "This Player has never logged into the server.",
               fatal: true,
             });
             return z.NEVER;
@@ -148,7 +148,6 @@ export function SignInForm() {
           name="identifier"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username or UUID</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Minecraft Name Or UUID"
