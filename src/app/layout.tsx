@@ -2,9 +2,10 @@ import "~/styles/globals.css";
 import "~/styles/stars.scss";
 
 import { GeistSans } from "geist/font/sans";
-import { TopNav } from "./_components/topnav";
 import { Toaster } from "~/components/ui/toaster";
 import CookieBanner from "./_components/cookiebanner";
+import { TopNav } from "./_components/topnav";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "StarlitMC",
@@ -17,12 +18,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieHeader = cookies();
+  const cookieConsent = cookieHeader.get("cookie-consent")?.value ?? null;
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
         <TopNav />
         {children}
-        <CookieBanner />
+        <CookieBanner cookieConsent={cookieConsent} />
         <div id="stars"></div>
         <div id="stars2"></div>
         <div id="stars3"></div>
