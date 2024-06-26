@@ -10,6 +10,9 @@ export default function CookieBanner({
     if (cookieConsent) {
       return false;
     }
+    if (typeof window === "undefined") {
+      return false;
+    }
     const cookiesDeclined = sessionStorage.getItem("cookies-declined");
     return !cookiesDeclined;
   });
