@@ -1,37 +1,37 @@
-"use client";
-import { useState } from "react";
+"use client"
+import { useState } from "react"
 
 export default function CookieBanner({
   cookieConsent,
 }: {
-  cookieConsent: string | null;
+  cookieConsent: string | null
 }) {
   const [isVisible, setIsVisible] = useState(() => {
     if (cookieConsent) {
-      return false;
+      return false
     }
     if (typeof window === "undefined") {
-      return false;
+      return false
     }
-    const cookiesDeclined = sessionStorage.getItem("cookies-declined");
-    return !cookiesDeclined;
-  });
+    const cookiesDeclined = sessionStorage.getItem("cookies-declined")
+    return !cookiesDeclined
+  })
 
   const handleAccept = () => {
     // Set a cookie to remember the user's consent
     document.cookie =
-      "cookie-consent=true; path=/; max-age=" + 60 * 60 * 24 * 365; // 1 year expiration
-    setIsVisible(false);
-  };
+      "cookie-consent=true path=/ max-age=" + 60 * 60 * 24 * 365 // 1 year expiration
+    setIsVisible(false)
+  }
 
   const handleDecline = () => {
     // Use session storage to remember the user's decline
-    sessionStorage.setItem("cookies-declined", "true");
-    setIsVisible(false);
-  };
+    sessionStorage.setItem("cookies-declined", "true")
+    setIsVisible(false)
+  }
 
   if (!isVisible) {
-    return null; // Don't render the banner if cookies have already been accepted or declined
+    return null // Don't render the banner if cookies have already been accepted or declined
   }
 
   return (
@@ -63,5 +63,5 @@ export default function CookieBanner({
         </div>
       </div>
     </div>
-  );
+  )
 }

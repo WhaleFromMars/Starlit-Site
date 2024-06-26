@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { sql } from "drizzle-orm"
 import {
   index,
   pgTableCreator,
@@ -7,16 +7,16 @@ import {
   varchar,
   integer,
   json,
-} from "drizzle-orm/pg-core";
+} from "drizzle-orm/pg-core"
 
-export const createTable = pgTableCreator((name) => `starlitsite_${name}`);
+export const createTable = pgTableCreator((name) => `starlitsite_${name}`)
 
 export const users = createTable("user", {
   id: varchar("id", { length: 32 }).notNull().primaryKey(),
   displayName: varchar("display_name", { length: 16 }).notNull(),
   profilePic: varchar("profile_pic", { length: 255 }),
   email: varchar("email", { length: 255 }),
-});
+})
 
 export const storePurchases = createTable(
   "store_purchase",
@@ -33,7 +33,7 @@ export const storePurchases = createTable(
   (purchase) => ({
     userIdIndex: index("store_purchase_user_id_idx").on(purchase.userId),
   }),
-);
+)
 
 export const votes = createTable(
   "vote",
@@ -50,4 +50,4 @@ export const votes = createTable(
   (vote) => ({
     userIdIndex: index("vote_user_id_idx").on(vote.userId),
   }),
-);
+)

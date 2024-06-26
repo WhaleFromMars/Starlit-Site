@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { SignInButton } from "./signinbutton";
+import Link from "next/link"
+import { SignInButton } from "./signinbutton"
 
 export function TopNav() {
   return (
@@ -22,5 +22,5 @@ export function TopNav() {
 
       <SignInButton />
     </nav>
-  );
+  )
 }

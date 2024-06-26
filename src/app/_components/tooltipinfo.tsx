@@ -3,8 +3,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "~/components/ui/tooltip";
-import Image from "next/image";
+} from "~/components/ui/tooltip"
+import Image from "next/image"
 
 export function TooltipInfo({ text }: { text: string }) {
   return (
@@ -24,5 +24,5 @@ export function TooltipInfo({ text }: { text: string }) {
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  );
+  )
 }

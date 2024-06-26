@@ -33,5 +33,5 @@ export default function CookieInfoPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

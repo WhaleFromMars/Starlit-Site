@@ -1,5 +1,5 @@
-import type Stripe from "stripe";
-import { Button } from "~/components/ui/button";
+import type Stripe from "stripe"
+import { Button } from "~/components/ui/button"
 import {
   Card,
   CardContent,
@@ -7,29 +7,29 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "~/components/ui/card";
-import { TooltipInfo } from "../_components/tooltipinfo";
+} from "~/components/ui/card"
+import { TooltipInfo } from "../_components/tooltipinfo"
 
 // Function to format the product description
 function formatDescription(product: Stripe.Product) {
-  if (!product.description) return { mainDescription: "", bulletPoints: [] };
+  if (!product.description) return { mainDescription: "", bulletPoints: [] }
 
-  const parts = product.description.split(";").filter(Boolean);
-  const mainDescription = parts[0];
+  const parts = product.description.split(";").filter(Boolean)
+  const mainDescription = parts[0]
   const bulletPoints = parts.slice(1).map((point) => {
-    const nestedValues: string[] = [];
+    const nestedValues: string[] = []
     const cleanedPoint = point.replace(/\|.*?\|/g, (match) => {
-      nestedValues.push(match.slice(1, -1)); // Extract text between pipes
-      return ""; // Remove the nested value from the point
-    });
-    return { cleanedPoint, nestedValues };
-  });
+      nestedValues.push(match.slice(1, -1)) // Extract text between pipes
+      return "" // Remove the nested value from the point
+    })
+    return { cleanedPoint, nestedValues }
+  })
 
-  return { mainDescription, bulletPoints };
+  return { mainDescription, bulletPoints }
 }
 
 export function StoreCard({ product }: { product: Stripe.Product }) {
-  const { mainDescription, bulletPoints } = formatDescription(product);
+  const { mainDescription, bulletPoints } = formatDescription(product)
 
   return (
     <Card className="flex h-full flex-col text-wrap border-2 border-white bg-gray-800 text-white">
@@ -56,5 +56,5 @@ export function StoreCard({ product }: { product: Stripe.Product }) {
         <Button className="border-2 border-blue-400 ml-2">More Info </Button>
       </CardFooter>
     </Card>
-  );
+  )
 }

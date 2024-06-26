@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { toast } from "~/components/ui/use-toast";
+import { Button } from "~/components/ui/button"
+import { Input } from "~/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { toast } from "~/components/ui/use-toast"
 import {
   Form,
   FormControl,
@@ -13,50 +13,50 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "~/components/ui/form";
+} from "~/components/ui/form"
 
 interface MojangApiResponse {
-  name: string;
-  id: string;
+  name: string
+  id: string
 }
 
 interface MojangApiErrorResponse {
-  error: string;
-  errorMessage: string;
+  error: string
+  errorMessage: string
 }
 
 interface CheckUserResponse {
-  exists: boolean;
+  exists: boolean
 }
 
 const fetchUUID = async (username: string): Promise<string> => {
   const response = await fetch(`/api/proxy/mojang?username=${username}`, {
     method: "GET",
-  });
+  })
 
   if (response.status === 200) {
     const data: MojangApiResponse =
-      (await response.json()) as MojangApiResponse;
-    return data.id;
+      (await response.json()) as MojangApiResponse
+    return data.id
   } else if (response.status === 204) {
-    throw new Error("Invalid Username");
+    throw new Error("Invalid Username")
   } else {
-    const errorData = (await response.json()) as MojangApiErrorResponse;
-    throw new Error(errorData.errorMessage);
+    const errorData = (await response.json()) as MojangApiErrorResponse
+    throw new Error(errorData.errorMessage)
   }
-};
+}
 
 const checkUserExists = async (uuid: string): Promise<boolean> => {
-  const response = await fetch(`/api/check-user?uuid=${uuid}`);
+  const response = await fetch(`/api/check-user?uuid=${uuid}`)
   if (response.status === 200) {
     const data: CheckUserResponse =
-      (await response.json()) as CheckUserResponse;
-    return data.exists;
+      (await response.json()) as CheckUserResponse
+    return data.exists
   } else {
-    const errorData = (await response.json()) as { error: string };
-    throw new Error(errorData.error);
+    const errorData = (await response.json()) as { error: string }
+    throw new Error(errorData.error)
   }
-};
+}
 
 const SignInSchema = z.object({
   identifier: z
@@ -76,50 +76,50 @@ const SignInSchema = z.object({
       if (/^[a-zA-Z0-9_]{3,16}$/.test(val)) {
         try {
           // Fetch UUID from Mojang
-          val = await fetchUUID(val);
+          val = await fetchUUID(val)
         } catch (error) {
           if (error instanceof Error) {
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
               message: error.message,
               fatal: true,
-            });
-            return z.NEVER;
+            })
+            return z.NEVER
           } else {
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
               message: "An unknown error occurred.",
               fatal: true,
-            });
-            return z.NEVER;
+            })
+            return z.NEVER
           }
         }
       } else if (val.length === 36) {
-        val = val.replace(/-/g, "");
+        val = val.replace(/-/g, "")
       }
 
       if (val.length === 32) {
         try {
-          const userExists = await checkUserExists(val);
+          const userExists = await checkUserExists(val)
           if (!userExists) {
             ctx.addIssue({
               code: z.ZodIssueCode.custom,
               message: "This Player has never logged into the server.",
               fatal: true,
-            });
-            return z.NEVER;
+            })
+            return z.NEVER
           }
         } catch (error) {
           ctx.addIssue({
             code: z.ZodIssueCode.custom,
             message: "Error checking user in the database.",
             fatal: true,
-          });
-          return z.NEVER;
+          })
+          return z.NEVER
         }
       }
     }),
-});
+})
 
 export function SignInForm() {
   const form = useForm<z.infer<typeof SignInSchema>>({
@@ -127,7 +127,7 @@ export function SignInForm() {
     defaultValues: {
       identifier: "",
     },
-  });
+  })
 
   async function onSubmit(data: z.infer<typeof SignInSchema>) {
     toast({
@@ -137,7 +137,7 @@ export function SignInForm() {
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
       ),
-    });
+    })
   }
 
   return (
@@ -164,5 +164,5 @@ export function SignInForm() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }
