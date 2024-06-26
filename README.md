@@ -3,16 +3,15 @@
 ## TODO
 
 - [x] Scaffold base UI with mock data
-    - [ ] Main Navigation
+    - [x] Main Navigation
     - [ ] Store
         - [ ] Navigation
         - [x] Categories
-        - [ ] Items
+        - [x] Items
     - [ ] Vote
     - [ ] News
-- [ ] setup database (supabase) self hosted
-- [ ] connect to database
-- [ ] setup auth (next auth)
+- [x] setup database (supabase) self hosted (or not currently)
+- [x] connect to database
 - [ ] setup error management (sentry)
 - [ ] setup analytics (plausible)
 - [ ] rate limiter (upstash)
