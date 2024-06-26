@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card"
-import { TooltipInfo } from "../_components/tooltipinfo"
+import { PopoverInfo } from "./popoverinfo"
 
 // Function to format the product description
 function formatDescription(product: Stripe.Product) {
@@ -44,7 +44,7 @@ export function StoreCard({ product }: { product: Stripe.Product }) {
               <li key={index}>
                 {point.cleanedPoint}
                 {point.nestedValues.map((nestedValue, nestedIndex) => (
-                  <TooltipInfo key={nestedIndex} text={nestedValue} />
+                  <PopoverInfo key={nestedIndex} text={nestedValue} />
                 ))}
               </li>
             ))}
