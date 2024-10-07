@@ -1,4 +1,7 @@
 # StarlitSite
+Current Inactive:
+We are working on private repos/mods under the StarlitMC organisation
+The postgresql server this website relies on is no longer active, so will not build for now
 
 ## TODO
 
@@ -10,7 +13,7 @@
         - [x] Items
     - [ ] Vote
     - [ ] News
-- [x] setup database (supabase) self hosted (or not currently)
+- [x] setup database (via supabase) self hosted (not currently)
 - [x] connect to database
 - [ ] setup error management (sentry)
 - [ ] setup analytics (plausible)
