@@ -1,7 +1,10 @@
 # StarlitSite
 Current Inactive:
 We are working on private repos/mods under the StarlitMC organisation
-The postgresql server this website relies on is no longer active, so will not build for now
+The postgresql server this website relies on is no longer active
+Unstable version is hosted via vercel at www.starlitmc.com
+The store page will load data/products from stripe, products wont populate to a basket
+sign in will fail to validate against our database as its not alive rn
 
 ## TODO
 
